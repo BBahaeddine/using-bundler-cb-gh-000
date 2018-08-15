@@ -42,35 +42,35 @@ describe "Bundler" do
       expect(@gemfile_text =~ /gem ['"]awesome_print['"], ?(git:|:git ?=>) ?['"]git@github\.com:awesome\-print\/awesome_print\.git['"]/).not_to eq(nil)
     end
 
-    # describe "groups" do
-    #   after :each do
-    #     system("rm .bundle/config")
-    #   end
+    describe "groups" do
+      after :each do
+        system("rm .bundle/config")
+      end
 
     #   # http://bundler.io/v1.3/groups.html
-    #   it "should contain the pry gem in the development group using a hash argument to the gem method" do
-    #     expect(@gemfile_text =~ /gem ['"]pry['"], ?(group:|:group ?=>) ?(:development|['"]development['"])/).not_to eq(nil)
-    #     expect(@bundle_output =~ /pry/).not_to eq(nil)
+      it "should contain the pry gem in the development group using a hash argument to the gem method" do
+        expect(@gemfile_text =~ /gem ['"]pry['"], ?(group:|:group ?=>) ?(:development|['"]development['"])/).not_to eq(nil)
+        expect(@bundle_output =~ /pry/).not_to eq(nil)
 
-    #     bundle_output_without_development = ""
-    #     Bundler.with_clean_env do
-    #       bundle_output_without_development = `bundle --without development`
-    #     end
-    #     expect(bundle_output_without_development =~ /pry/).to eq(nil)
-    #   end
+        bundle_output_without_development = ""
+        Bundler.with_clean_env do
+          bundle_output_without_development = `bundle --without development`
+        end
+        expect(bundle_output_without_development =~ /pry/).to eq(nil)
+      end
 
     #   # http://bundler.io/v1.3/groups.html
-    #   it "should contain the rspec gem in the test group using block syntax" do
-    #     expect(@gemfile_text =~ /group (:test|['"]test['"]) do/).not_to eq(nil)
-    #     expect(@bundle_output =~ /rspec/).not_to eq(nil)
+      it "should contain the rspec gem in the test group using block syntax" do
+        expect(@gemfile_text =~ /group (:test|['"]test['"]) do/).not_to eq(nil)
+        expect(@bundle_output =~ /rspec/).not_to eq(nil)
 
-    #     bundle_output_without_test = ""
-    #     Bundler.with_clean_env do
-    #       bundle_output_without_test = `bundle --without test`
-    #     end
-    #     expect(bundle_output_without_test =~ /rspec/).to eq(nil)
-    #   end
-    # end
+        bundle_output_without_test = ""
+        Bundler.with_clean_env do
+          bundle_output_without_test = `bundle --without test`
+        end
+        expect(bundle_output_without_test =~ /rspec/).to eq(nil)
+      end
+    end
   end
 
   This may exist from having run bundle install in other tests
